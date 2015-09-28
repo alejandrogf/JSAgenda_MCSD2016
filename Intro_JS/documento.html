@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script>
+
+        var listado = [];
+
+
+        function incluirTelefono()
+        {
+            listado.push(document.getElementById("txtTexto+").value);//Obtengo el valor del objeto. Si no usase .value obtendría todo el objeto en sí.
+            escribir();
+            document.getElementById("txtTexto+").value = "";// "limpio" la caja de texto
+            document.getElementById("txtTexto+").focus();
+        }
+
+        function eliminarTelefono()
+        {
+            var borrarId = document.getElementById("txtTexto-").value;//Obtengo el valor del objeto. Si no usase .value obtendría todo el objeto en sí.
+            listado.splice(borrarId, 1);//Elimino el elemento con el índice que indiqué en la caja de texto
+            escribir();
+            document.getElementById("txtTexto-").value = "";// "limpio" la caja de texto
+            document.getElementById("txtTexto-").focus();
+        }
+
+        function escribir()
+        {
+            var id_capa = document.getElementById("listadoTelefono");//Obtengo todo el elmento en su conjunto.
+            id_capa.innerHTML = '';// "limpio" la capa, para que cada vez que se hace la llamada se borre la información que ya había antes y así no duplique.
+            for (var i = 0; i < listado.length; i++)
+            {
+                id_capa.innerHTML += "Posición: " + i + ":  " + listado[i] + "<br />";//Para concatenar se usa +=
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <br /><br />
+    <div id="listadoTelefono">
+    </div>
+
+    <br /><br /><br /><br /><br /><br />
+
+    <label for="txtTexto+" >Añadir valores: </label>
+    <input type="text" id="txtTexto+" placeholder="Escribe aquí"/>
+    <input type="button" value="Añadir" onclick="incluirTelefono()"/>
+
+    <br /><br />
+
+    <label for="txtTexto+">Eliminar valores: </label>
+    <input type="text" id="txtTexto-" placeholder="Escribe aquí" />
+    <input type="button" value="Eliminar" onclick="eliminarTelefono()" />
+
+</body>
+</html>
